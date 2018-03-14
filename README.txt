@@ -1,0 +1,1 @@
+CRUD Resource for storing Memories
