@@ -18,12 +18,6 @@ class MemoryController(BaseController):
     
     @expose('full_stack_app.templates.memory')
     def index(self):
-    	m_name = [memorys.name for memorys in DBSession.query(Memory).order_by(Memory.name)]
-        m_content = [memorys.content for memorys in DBSession.query(Memory).order_by(Memory.content)]
-        m_data = [memorys.data for memorys in DBSession.query(Memory).order_by(Memory.data)]
-        #m_user = [memorys.user for memorys in DBSession.query(Memory).order_by(Memory.user)]
+    	memories = DBSession.query(Memory).all()
         return dict(page='memory',
-        	m_name=m_name,
-        	m_content=m_content,
-        	m_data=m_data)#,
-        	#m_user=m_user)
+        	memories=memories)

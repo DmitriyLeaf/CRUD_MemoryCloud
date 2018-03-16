@@ -7,8 +7,10 @@
       <div class="main_content">
         <h1>All memories</h1>
         <ul>
-          <li py:for="mem in m_name">
-            <div py:content="mem"></div>
+          <li py:for="memory in memories">
+            <b><div py:content="memory.name"></div></b>
+            <div py:content="memory.data"></div>
+            <div py:content="memory.content"></div>
           </li>
         </ul>
       </div>
