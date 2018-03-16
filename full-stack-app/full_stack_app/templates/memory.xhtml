@@ -1,0 +1,24 @@
+<html py:extends="master.xhtml" py:strip="True">
+    <head py:block="head" py:strip="True">
+        <title py:block="master_title">Memory</title>
+    </head>
+
+    <body py:block="body" py:strip="True">
+      <div class="main_content">
+        <h1>All memories</h1>
+        <ul>
+          <li py:for="mem in m_name">
+            <div py:content="mem"></div>
+          </li>
+        </ul>
+      </div>
+      <!--div class="row">
+        <div class="col-md-12">
+          <h2>Memory</h2>
+          <p>
+            Template page for Memory
+          </p>
+        </div>
+      </div-->
+    </body>
+</html>
