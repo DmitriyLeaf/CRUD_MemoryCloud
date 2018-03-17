@@ -1,19 +1,39 @@
 <html py:extends="master.xhtml" py:strip="True">
     <head py:block="head" py:strip="True">
-        <title py:block="master_title">Memory</title>
+        <title py:block="master_title">Memories</title>
     </head>
 
     <body py:block="body" py:strip="True">
       <div class="main_content">
         <h1>All memories</h1>
+        <div><a href="/add_memory">Add memory</a></div><br></br>
         <ul>
           <li py:for="memory in memories">
             <b><div py:content="memory.name"></div></b>
             <div py:content="memory.data"></div>
+            <div py:content="memory.user"><p>:</p></div>
             <div py:content="memory.content"></div>
+            <!--div>
+              <input type="button" value="Edit" href="${tg.url('/edit')}"/>
+            </div><div>
+              <form action="${tg.url('/delete', params=dict(came_from=came_from, memory.uid=memory.uid)}" method="delete">
+                <input type="hidden" name="uid" value="${memory.uid}"/>
+                <input type="button" name="${memory.uid}" value="Delete"/>
+              </form>
+            </div>
+            <div>
+              <form action="/edit" method="post">
+                <input type="submit" name="name" value="${memory.name}"/>
+                <textarea name="content" py:content="memory.content" rows="5" cols="50"/><br></br>
+                <input type="submit" name="submit" value="Edit"/>
+              </form>
+            </div-->
+            <!--div><a href="/edit/${memory.name}">| Edit memory |</a></div-->
+            <!--a href="/delete">| Delete memory |</a-->
+            <hr></hr>
           </li>
         </ul>
-        ${memory_form.display(action=url('/memory/new'))}
+        <!--${memory_form.display(action=url('/memory/new'))}-->
       </div>
       <!--div class="row">
         <div class="col-md-12">
