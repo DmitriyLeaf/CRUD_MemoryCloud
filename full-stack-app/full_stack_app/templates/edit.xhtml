@@ -1,0 +1,24 @@
+<html py:extends="master.xhtml" py:strip="True">
+    <head py:block="head" py:strip="True">
+        <title py:block="master_title">Editins: ${memory.name}</title>
+    </head>
+
+    <body py:block="body" py:strip="True">
+      <div class="main_content">
+        <div>
+          <form action="/save" method="post">
+            <!--input type="hidden" name="name" value="${memory.name}"/-->
+            <textarea name="data" py:content="memory.data" rows="5" cols="50"/>
+            <input type="submit" name="submit" value="Save"/>
+          </form>
+          <div>
+              <form action="/edit" method="post">
+                <input type="hidden" name="name" value="${memory.name}"/>
+                  <textarea name="content" py:content="memory.content" rows="10" cols="60"/>
+                <input type="submit" name="submit" value="Edit"/>
+              </form>
+            </div>
+        </div>
+      </div>
+    </body>
+</html>
