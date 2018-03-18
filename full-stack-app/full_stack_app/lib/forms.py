@@ -1,12 +1,13 @@
-#import tw2.core
-#import tw2.forms
-#from tw2.forms import *
-#from tw2.bootstrap.forms.widgets import HorizontalForm
-#import tw2.bootstrap.forms.widgets as twb
+import tg
+from tg.i18n import lazy_ugettext
 
-#import tw2.bootstrap.forms.widgets as twb
+from tw2.forms import *
+from tw2.bootstrap.forms.widgets import HorizontalForm, TextField, SubmitButton
 
-from tw2.core import Required, Deferred
+from datetime import datetime
+from full_stack_app.model import DeclarativeBase, metadata, DBSession
+from full_stack_app.model.memory import Memory
+#from tg import config
 ''' (
 	bootstrap_css, 
 	bootstrap_responsive_css, 
@@ -22,7 +23,12 @@ from tw2.core import Required, Deferred
 	SubmitButton) '''
 
 class MemoryForm(HorizontalForm):
-	name = TextField(label='name')
-	data = TextField(label='data')
+	name = TextField(label='Name')
+	data = TextField(label='Data', default = datetime.utcnow)
 	content = TextField(label='content')
-	submit = SubmitButton(value=l_('Save'), css_class='btn btn-defaulf')
+	submit = SubmitButton(value=lazy_ugettext('Save'), css_class='btn btn-defaulf')
+
+def save(self):
+	new_memory = Memory(name, content, data)
+	session.add(new_memory)
+	return 

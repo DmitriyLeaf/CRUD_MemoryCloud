@@ -1,0 +1,13 @@
+<html py:extends="master.xhtml" py:strip="True">
+    <head py:block="head" py:strip="True">
+        <title py:block="master_title">Adding new memory</title>
+    </head>
+
+    <body py:block="body" py:strip="True">
+      <div class="main_content">
+        <h1>Adding your new memory:</h1>
+        <h4>Input please all fields</h4> <br></br>
+        ${memory_form.display(action=url('/memory'))}
+      </div>
+    </body>
+</html>
