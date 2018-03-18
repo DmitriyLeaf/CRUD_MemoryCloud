@@ -13,35 +13,9 @@
             <div py:content="memory.data"></div>
             <div py:content="memory.user"><p>:</p></div>
             <div py:content="memory.content"></div>
-            <!--div>
-              <input type="button" value="Edit" href="${tg.url('/edit')}"/>
-            </div><div>
-              <form action="${tg.url('/delete', params=dict(came_from=came_from, memory.uid=memory.uid)}" method="delete">
-                <input type="hidden" name="uid" value="${memory.uid}"/>
-                <input type="button" name="${memory.uid}" value="Delete"/>
-              </form>
-            </div>
-            <div>
-              <form action="/edit" method="post">
-                <input type="submit" name="name" value="${memory.name}"/>
-                <textarea name="content" py:content="memory.content" rows="5" cols="50"/><br></br>
-                <input type="submit" name="submit" value="Edit"/>
-              </form>
-            </div-->
-            <!--div><a href="/edit/${memory.name}">| Edit memory |</a></div-->
-            <!--a href="/delete">| Delete memory |</a-->
             <hr></hr>
           </li>
         </ul>
-        <!--${memory_form.display(action=url('/memory/new'))}-->
       </div>
-      <!--div class="row">
-        <div class="col-md-12">
-          <h2>Memory</h2>
-          <p>
-            Template page for Memory
-          </p>
-        </div>
-      </div-->
     </body>
 </html>

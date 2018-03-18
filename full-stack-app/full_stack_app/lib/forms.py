@@ -24,11 +24,12 @@ from full_stack_app.model.memory import Memory
 
 class MemoryForm(HorizontalForm):
 	name = TextField(label='Name')
-	data = TextField(label='Data', default = datetime.utcnow)
 	content = TextField(label='content')
-	submit = SubmitButton(value=lazy_ugettext('Save'), css_class='btn btn-defaulf')
+	data = datetime.utcnow
+	submit = SubmitButton(value=lazy_ugettext('save'), css_class='btn btn-defaulf')
 
-def save(self):
-	new_memory = Memory(name, content, data)
-	session.add(new_memory)
-	return 
+	def save():
+		new_memory = Memory(name, content, data)
+		session.add(new_memory)
+		session.commit()
+		return redirect('/memory')
