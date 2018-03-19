@@ -30,14 +30,11 @@ class MemoryController(BaseController):
         	memory_form=memory_form)
 
     @expose()
-    def new():
-		m = model.Memory()
-        m.name = self.name
-        m.content = self.content
-        model.DBSession.add(m)
-        model.DBSession.flush()
-        transaction.commit()
-		redirect('/')
+    def new(self, name, content):
+        user = request.identity['user']
+        DBSession.add(Memory(name=name, content=content, user=user))
+        redirect('/')
+		
 
     '''@expose('full_stack_app.templates.edit')
     def edit(self, uid, submit):
