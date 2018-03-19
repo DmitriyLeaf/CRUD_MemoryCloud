@@ -29,6 +29,16 @@ class MemoryController(BaseController):
         return dict(page='adding',
         	memory_form=memory_form)
 
+    @expose()
+    def new():
+		m = model.Memory()
+        m.name = self.name
+        m.content = self.content
+        model.DBSession.add(m)
+        model.DBSession.flush()
+        transaction.commit()
+		redirect('/')
+
     '''@expose('full_stack_app.templates.edit')
     def edit(self, uid, submit):
     	memory = DBSession.query(Memory).filter_by(uid=uid).one()

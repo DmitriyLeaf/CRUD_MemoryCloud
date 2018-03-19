@@ -23,5 +23,4 @@ class Memory(DeclarativeBase):
                         backref=backref('memorys',
                                         cascade='all, delete-orphan'))
 
-
 __all__ = ['Memory']

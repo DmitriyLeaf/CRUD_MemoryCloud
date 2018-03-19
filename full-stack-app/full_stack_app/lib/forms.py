@@ -26,10 +26,11 @@ class MemoryForm(HorizontalForm):
 	name = TextField(label='Name')
 	content = TextField(label='content')
 	data = datetime.utcnow
-	submit = SubmitButton(value=lazy_ugettext('save'), css_class='btn btn-defaulf')
+	submit = SubmitButton(value=lazy_ugettext('Save'), css_class='btn btn-defaulf')
 
-	def save():
+        
+	"""def save():
 		new_memory = Memory(name, content, data)
-		session.add(new_memory)
-		session.commit()
-		return redirect('/memory')
+		DBSession.add(new_memory)
+		DBSession.commit()
+		return redirect('/memory')"""

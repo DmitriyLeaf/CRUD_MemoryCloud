@@ -6,8 +6,8 @@
     <body py:block="body" py:strip="True">
       <div class="main_content">
         <h1>Adding your new memory:</h1>
-        <h4>Input please all fields</h4> <br></br>
-        ${memory_form.display()}
+        <div><h4>Input please all fields</h4> <br></br>
+        ${memory_form.display(action=url('/memory/new'))}</div>
       </div>
     </body>
 </html>
