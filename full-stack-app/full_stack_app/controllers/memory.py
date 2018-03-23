@@ -3,7 +3,7 @@
 
 from tg import expose, redirect, validate, flash, url, require, request
 # from tg.i18n import ugettext as _
-# from tg import predicates
+from tg import predicates
 
 from full_stack_app.lib.base import BaseController
 from full_stack_app.model import DBSession
@@ -12,11 +12,9 @@ from full_stack_app.lib.forms import MemoryForm
 
 __all__ = ['MemoryController']
 
-
 class MemoryController(BaseController):
-    # Uncomment this line if your controller requires an authenticated user
-    # allow_only = predicates.not_anonymous()
-    
+    allow_only = predicates.not_anonymous()
+
     @expose('full_stack_app.templates.memory')
     def index(self):
     	memories = DBSession.query(Memory).all()
@@ -33,8 +31,15 @@ class MemoryController(BaseController):
     def new(self, name, content):
         user = request.identity['user']
         DBSession.add(Memory(name=name, content=content, user=user))
-        redirect('/')
-		
+        redirect('/memory')
+
+    @expose('json')
+    def post_delete(self, uid):
+    	memory = DBSession.query(Memory).get(uid)
+    	DBSession.delete(memory)
+    	redirect('/memory')
+    	#return dict(page='index')
+    	
 
     '''@expose('full_stack_app.templates.edit')
     def edit(self, uid, submit):
