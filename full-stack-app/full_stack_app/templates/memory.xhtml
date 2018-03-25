@@ -7,21 +7,19 @@
       <div class="main_content">
         <h1>All memories</h1>
         <div><a href="memory/adding">Add memory</a></div><br></br>
-        <ul>
+        <ol>
           <li py:for="memo in memories">
             <b><div py:content="memo.name"></div></b>
             <div py:content="memo.data"></div>
             <div py:content="memo.user"><p>:</p></div>
             <div py:content="memo.content"></div>
-            <!--div>${memory_del.display(action=url('/memory/post_delete'))}</div-->
-              <form method="POST" action="" style="display: inline">        
-                <input type="hidden" name="_method" value="DELETE"/>
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"></button>
-                <!--input type="submit" name="memory/post_delete" value="memo.uid"/-->
-              </form>
+            <form method="POST" action="memory/post_delete" style="display: inline">        
+              <input type="hidden" name="uid" value="$memo.uid"/>
+              <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+            </form>
             <hr></hr>
           </li>
-        </ul>
+        </ol>
       </div>
     </body>
 </html>

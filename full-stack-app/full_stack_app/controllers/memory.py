@@ -10,10 +10,14 @@ from full_stack_app.model import DBSession
 from full_stack_app.model.memory import Memory
 from full_stack_app.lib.forms import MemoryForm
 
+from sprox.providerselector import ProviderTypeSelector
+
 __all__ = ['MemoryController']
 
 class MemoryController(BaseController):
     allow_only = predicates.not_anonymous()
+    provider_type_selector_type = ProviderTypeSelector
+
 
     @expose('full_stack_app.templates.memory')
     def index(self):
@@ -34,20 +38,16 @@ class MemoryController(BaseController):
         redirect('/memory')
 
     @expose('json')
-    def post_delete(self, uid):
-    	memory = DBSession.query(Memory).get(uid)
+    def post_delete(self, uid, **kw):
+        memory = DBSession.query(Memory).filter_by(uid=uid).one()
+        if not memory:
+            return dict(errors={'memory':'Memory not found'})
     	DBSession.delete(memory)
-    	redirect('/memory')
-    	#return dict(page='index')
+        redirect('/memory')
     	
 
     '''@expose('full_stack_app.templates.edit')
     def edit(self, uid, submit):
     	memory = DBSession.query(Memory).filter_by(uid=uid).one()
     	return dict(page='edit',
-    		memory=memory)
-
-    @expose()
-    def delete(self, uid):
-    	delete = DBSession.delete(Memory).filter_by(uid=uid).one()
-    	return redirect("index")'''
+    	s	memory=memory)
