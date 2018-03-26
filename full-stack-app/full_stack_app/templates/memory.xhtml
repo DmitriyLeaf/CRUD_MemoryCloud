@@ -13,10 +13,16 @@
             <div py:content="memo.data"></div>
             <div py:content="memo.user"><p>:</p></div>
             <div py:content="memo.content"></div>
+
+            <form method="POST" action="memory/edit" style="display: inline">        
+              <input type="hidden" name="uid" value="$memo.uid"/>
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </form>
             <form method="POST" action="memory/post_delete" style="display: inline">        
               <input type="hidden" name="uid" value="$memo.uid"/>
               <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
             </form>
+            
             <hr></hr>
           </li>
         </ol>

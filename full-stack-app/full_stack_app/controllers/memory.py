@@ -8,7 +8,7 @@ from tg import predicates
 from full_stack_app.lib.base import BaseController
 from full_stack_app.model import DBSession
 from full_stack_app.model.memory import Memory
-from full_stack_app.lib.forms import MemoryForm
+from full_stack_app.lib.forms import MemoryForm, EditForm
 
 from sprox.providerselector import ProviderTypeSelector
 
@@ -44,10 +44,20 @@ class MemoryController(BaseController):
             return dict(errors={'memory':'Memory not found'})
     	DBSession.delete(memory)
         redirect('/memory')
-    	
 
-    '''@expose('full_stack_app.templates.edit')
-    def edit(self, uid, submit):
-    	memory = DBSession.query(Memory).filter_by(uid=uid).one()
+    @expose('full_stack_app.templates.edit')
+    def edit(self, uid):
+        memory = DBSession.query(Memory).filter_by(uid=uid).one()
+        #edit_form = EditForm()
+        #edit_form.m_name = memory.name
+        #edit_form.m_content = memory.content
     	return dict(page='edit',
-    	s	memory=memory)
+            memory=memory,
+            edit_form=EditForm)
+
+    @expose()
+    def save(self, uid, name, content):
+        memory = DBSession.query(Memory).filter_by(uid=uid).one()
+        memory.name = name
+        memory.content = content
+        redirect('/memory')
