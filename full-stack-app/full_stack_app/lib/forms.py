@@ -34,7 +34,7 @@ class MemoryForm(HorizontalForm):
 
 class EditForm(HorizontalForm):
 	uid = HiddenField()
-	name = TextField(label='Memory\'s Name')#, value=memory.name)
-	content = TextField(label='Description')#, value=memory.content)
-	data = datetime.utcnow
+	name = TextField(label='Memory\'s Name')
+	content = TextField(label='Description')
+	#data = datetime.utcnow
 	submit = SubmitButton(value=lazy_ugettext('Save'), css_class='btn btn-success')

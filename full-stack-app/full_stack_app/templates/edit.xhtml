@@ -7,7 +7,7 @@
       <div class="main_content">
         <h1>Edit your memory: ${memory.name}</h1>
         <h4>Just edit what you want</h4><br />
-        ${edit_form.display(action=url('/memory/save'))}
+        ${edit_form.display(action=url('/memory/save'), value=value)}
       </div>
     </body>
 </html>

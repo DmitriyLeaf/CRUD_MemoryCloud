@@ -4,6 +4,7 @@
 from tg import expose, redirect, validate, flash, url, require, request
 # from tg.i18n import ugettext as _
 from tg import predicates
+#from datetime import datetime
 
 from full_stack_app.lib.base import BaseController
 from full_stack_app.model import DBSession
@@ -48,16 +49,17 @@ class MemoryController(BaseController):
     @expose('full_stack_app.templates.edit')
     def edit(self, uid):
         memory = DBSession.query(Memory).filter_by(uid=uid).one()
-        #edit_form = EditForm()
-        #edit_form.m_name = memory.name
-        #edit_form.m_content = memory.content
     	return dict(page='edit',
             memory=memory,
-            edit_form=EditForm)
+            edit_form=EditForm,
+            value=dict(uid=memory.uid,
+                name=memory.name,
+                content=memory.content))
 
     @expose()
-    def save(self, uid, name, content):
+    def save(self, uid, name, content):#, data):
         memory = DBSession.query(Memory).filter_by(uid=uid).one()
         memory.name = name
         memory.content = content
+        #memory.data = datetime.utcnow
         redirect('/memory')
